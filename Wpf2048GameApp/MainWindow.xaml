@@ -1,0 +1,68 @@
+﻿<Window x:Class="Wpf2048GameApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf2048GameApp"
+        mc:Ignorable="d"
+        Title="2048"  FontSize="45" KeyDown="Window_KeyDown" Height="450" Width="500" Background="#FFE7EAED">
+
+    <Window.Resources>
+        <ControlTemplate TargetType="Label" x:Key="MyScore">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label  FontWeight="Black"  FontSize="18" HorizontalAlignment="Center" Content="Score"/>
+                <Label HorizontalAlignment="Center" Grid.Row="1" FontSize="20" Content="{Binding Score}"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Label" x:Key="Best">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label  FontWeight="Black"  FontSize="18" HorizontalAlignment="Center" Content="Best"/>
+                <Label HorizontalContentAlignment="Center" Grid.Row="1" FontSize="20"  Content="{Binding Best}"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Column="0"  Content="  2048"/>
+            <Grid Margin="10"  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+
+                <Label Grid.Column="1" Template="{StaticResource MyScore}"/>
+                <Label Grid.Column="2" Template="{StaticResource Best}" Content="{Binding Best}"/>
+                <Button Width="50" Grid.Column="2" Grid.Row="1"   Click="NewGame_Click"  FontSize="15"  Content="🔄"  Margin="5" />
+             </Grid>
+        </Grid>
+        <UniformGrid Grid.Row="1" Margin="10" Background="#FFBBADA0"  x:Name="uniFormGridBoard" Columns="4" Rows="4"/>
+    </Grid>
+</Window>
+
